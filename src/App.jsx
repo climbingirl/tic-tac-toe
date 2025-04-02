@@ -1,7 +1,30 @@
-import styles from './App.module.css';
+import { useState } from 'react';
+import { AppLayout } from './AppLayout';
 
-function App() {
-  return <div className={styles.app}></div>;
-}
+export const App = () => {
+  const [field, setField] = useState(new Array(9).fill(null));
+  const [currentPlayer, setCurrentPlayer] = useState('x');
+  const [isGameEnded, setIsGameEnded] = useState(false);
+  const [isDraw, setIsDraw] = useState(false);
 
-export default App;
+  const handleGameReset = () => {
+    setField(new Array(9).fill(null));
+    setCurrentPlayer('x');
+    setIsGameEnded(false);
+    setIsDraw(false);
+  };
+
+  return (
+    <AppLayout
+      field={field}
+      setField={setField}
+      currentPlayer={currentPlayer}
+      setCurrentPlayer={setCurrentPlayer}
+      isGameEnded={isGameEnded}
+      setIsGameEnded={setIsGameEnded}
+      isDraw={isDraw}
+      setIsDraw={setIsDraw}
+      onGameReset={handleGameReset}
+    />
+  );
+};
