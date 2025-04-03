@@ -29,13 +29,3 @@ export const Field = ({
 
   return <FieldLayout field={field} handleClick={handleClick} />;
 };
-
-Field.propTypes = {
-  field: PropTypes.array,
-  setField: PropTypes.func,
-  currentPlayer: PropTypes.oneOf(['x', 'o']),
-  setCurrentPlayer: PropTypes.func,
-  isGameEnded: PropTypes.bool,
-  setIsGameEnded: PropTypes.func,
-  setIsDraw: PropTypes.func,
-};

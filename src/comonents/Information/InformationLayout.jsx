@@ -4,7 +4,6 @@ import styles from './Information.module.css';
 
 export const InformationLayout = ({ currentPlayer, isGameEnded, isDraw }) => {
   let content = '';
-
   if (isDraw) {
     content = 'Ничья';
   } else if (!isDraw && isGameEnded) {
@@ -14,10 +13,4 @@ export const InformationLayout = ({ currentPlayer, isGameEnded, isDraw }) => {
   }
 
   return <div className={styles.info}>{content}</div>;
-};
-
-InformationLayout.propTypes = {
-  currentPlayer: PropTypes.oneOf(['x', 'o']),
-  isGameEnded: PropTypes.bool,
-  isDraw: PropTypes.bool,
 };

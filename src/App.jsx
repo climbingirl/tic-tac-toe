@@ -6,7 +6,6 @@ export const App = () => {
   const [currentPlayer, setCurrentPlayer] = useState('x');
   const [isGameEnded, setIsGameEnded] = useState(false);
   const [isDraw, setIsDraw] = useState(false);
-
   const handleGameReset = () => {
     setField(new Array(9).fill(null));
     setCurrentPlayer('x');

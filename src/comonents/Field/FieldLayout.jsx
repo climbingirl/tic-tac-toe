@@ -19,8 +19,3 @@ export const FieldLayout = ({ field, handleClick }) => {
     </div>
   );
 };
-
-FieldLayout.propTypes = {
-  field: PropTypes.array,
-  handleClick: PropTypes.func,
-};

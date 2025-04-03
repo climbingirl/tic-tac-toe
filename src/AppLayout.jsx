@@ -36,15 +36,3 @@ export const AppLayout = ({
     </div>
   );
 };
-
-AppLayout.propTypes = {
-  field: PropTypes.array,
-  setField: PropTypes.func,
-  currentPlayer: PropTypes.oneOf(['x', 'o']),
-  setCurrentPlayer: PropTypes.func,
-  isGameEnded: PropTypes.bool,
-  setIsGameEnded: PropTypes.func,
-  isDraw: PropTypes.bool,
-  setIsDraw: PropTypes.func,
-  onGameReset: PropTypes.func,
-};
