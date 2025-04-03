@@ -1,5 +1,4 @@
 import styles from './App.module.css';
-import PropTypes from 'prop-types';
 import { Field } from './comonents/Field/Field';
 import { Information } from './comonents/Information/Information';
 
