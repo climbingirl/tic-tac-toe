@@ -1,4 +1,4 @@
-import { AppLayout } from './AppLayout';
+import { AppLayout } from './AppLayout.tsx';
 import { PLAYER } from './common/constants';
 import { store } from './redux/store';
 import {
@@ -17,15 +17,15 @@ export const App = () => {
   const currentPlayer = useReduxSelector((state) => state.currentPlayer);
   const dispatch = store.dispatch;
 
-  const handleGameReset = () => {
+  const handleGameReset = (): void => {
     dispatch(resetGame());
   };
 
-  const handleMove = (squreIndex) => {
-    if (field[squreIndex] || isGameEnded) return;
+  const handleMove = (squareIndex: number): void => {
+    if (field[squareIndex] || isGameEnded) return;
 
     const newField = field.slice();
-    newField[squreIndex] = currentPlayer;
+    newField[squareIndex] = currentPlayer;
 
     if (calcWinner(newField)) {
       dispatch(setIsGameEnded(true));

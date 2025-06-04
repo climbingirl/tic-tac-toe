@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { store } from './store';
+import { GameState } from './types';
 
-export function useReduxSelector(selector) {
-  const [selectedState, setSelectedState] = useState(() => selector(store.getState()));
+export function useReduxSelector<T>(selector: (state: GameState) => T): T {
+  const [selectedState, setSelectedState] = useState<T>(() => selector(store.getState()));
 
   useEffect(() => {
     let prevState = selector(store.getState());

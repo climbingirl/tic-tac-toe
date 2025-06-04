@@ -1,10 +1,12 @@
-export const PLAYER = {
+export type Player = 'Х' | 'O' | null;
+
+export const PLAYER: Record<string, Player> = {
   CROSS: 'Х',
   NOUGHT: 'O',
   NOBODY: null,
 };
 
-export const WIN_PATTERNS = [
+export const WIN_PATTERNS: number[][] = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],

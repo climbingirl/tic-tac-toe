@@ -7,15 +7,19 @@ import {
   SET_IS_DRAW,
   RESET_GAME,
 } from './actions';
+import { ActionType, GameState } from './types';
 
-const initialState = {
+const initialState: GameState = {
   field: createEmptyField(),
   currentPlayer: PLAYER.CROSS,
   isGameEnded: false,
   isDraw: false,
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (
+  state: GameState = initialState,
+  action: ActionType
+): GameState => {
   switch (action.type) {
     case SET_FIELD: {
       return { ...state, field: action.payload };

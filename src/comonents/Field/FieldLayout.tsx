@@ -1,6 +1,12 @@
 import styles from './Field.module.css';
+import { Player } from '../../common/constants';
 
-export const FieldLayout = ({ field, onMove }) => {
+interface FieldLayoutProps {
+  field: Player[];
+  onMove: (index: number) => void;
+}
+
+export const FieldLayout = ({ field, onMove }: FieldLayoutProps) => {
   return (
     <div className={styles.field}>
       {field.map((value, index) => (

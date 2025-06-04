@@ -1,5 +1,5 @@
 import { useReduxSelector } from '../../redux/hooks';
-import { InformationLayout } from './InformationLayout';
+import { InformationLayout } from './InformationLayout.tsx';
 
 export const Information = () => {
   const isDraw = useReduxSelector((state) => state.isDraw);
