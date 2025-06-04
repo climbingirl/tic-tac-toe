@@ -1,7 +1,6 @@
-import React from 'react';
 import styles from './Field.module.css';
 
-export const FieldLayout = ({ field, handleClick }) => {
+export const FieldLayout = ({ field, onMove }) => {
   return (
     <div className={styles.field}>
       {field.map((value, index) => (
@@ -9,7 +8,7 @@ export const FieldLayout = ({ field, handleClick }) => {
           className={styles.square}
           key={index}
           onClick={() => {
-            handleClick(index);
+            onMove(index);
           }}
         >
           {value}

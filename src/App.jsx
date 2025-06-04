@@ -1,29 +1,45 @@
-import { useState } from 'react';
 import { AppLayout } from './AppLayout';
+import { PLAYER } from './common/constants';
+import { store } from './redux/store';
+import {
+  resetGame,
+  setCurrentPlayer,
+  setField,
+  setIsDraw,
+  setIsGameEnded,
+} from './redux/actions';
+import { useReduxSelector } from './redux/hooks';
+import { calcWinner, hasEmptySquare } from './common/utils';
 
 export const App = () => {
-  const [field, setField] = useState(new Array(9).fill(null));
-  const [currentPlayer, setCurrentPlayer] = useState('x');
-  const [isGameEnded, setIsGameEnded] = useState(false);
-  const [isDraw, setIsDraw] = useState(false);
+  const field = useReduxSelector((state) => state.field);
+  const isGameEnded = useReduxSelector((state) => state.isGameEnded);
+  const currentPlayer = useReduxSelector((state) => state.currentPlayer);
+  const dispatch = store.dispatch;
+
   const handleGameReset = () => {
-    setField(new Array(9).fill(null));
-    setCurrentPlayer('x');
-    setIsGameEnded(false);
-    setIsDraw(false);
+    dispatch(resetGame());
   };
 
-  return (
-    <AppLayout
-      field={field}
-      setField={setField}
-      currentPlayer={currentPlayer}
-      setCurrentPlayer={setCurrentPlayer}
-      isGameEnded={isGameEnded}
-      setIsGameEnded={setIsGameEnded}
-      isDraw={isDraw}
-      setIsDraw={setIsDraw}
-      onGameReset={handleGameReset}
-    />
-  );
+  const handleMove = (squreIndex) => {
+    if (field[squreIndex] || isGameEnded) return;
+
+    const newField = field.slice();
+    newField[squreIndex] = currentPlayer;
+
+    if (calcWinner(newField)) {
+      dispatch(setIsGameEnded(true));
+    } else if (!hasEmptySquare(newField) && !isGameEnded) {
+      dispatch(setIsDraw(true));
+      dispatch(setIsGameEnded(true));
+    } else {
+      dispatch(
+        setCurrentPlayer(currentPlayer === PLAYER.CROSS ? PLAYER.NOUGHT : PLAYER.CROSS)
+      );
+    }
+
+    dispatch(setField(newField));
+  };
+
+  return <AppLayout onGameReset={handleGameReset} onMove={handleMove} />;
 };
