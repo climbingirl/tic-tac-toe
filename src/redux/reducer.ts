@@ -6,8 +6,9 @@ import {
   SET_IS_GAME_ENDED,
   SET_IS_DRAW,
   RESET_GAME,
+  ActionType,
 } from './actions';
-import { ActionType, GameState } from './types';
+import { GameState } from './types';
 
 const initialState: GameState = {
   field: createEmptyField(),
