@@ -1,10 +1,10 @@
-import { useReduxSelector } from '../../redux/hooks';
 import { InformationLayout } from './InformationLayout.tsx';
+import { useAppSelector } from '../../redux/hooks.ts';
 
 export const Information = () => {
-  const isDraw = useReduxSelector((state) => state.isDraw);
-  const isGameEnded = useReduxSelector((state) => state.isGameEnded);
-  const currentPlayer = useReduxSelector((state) => state.currentPlayer);
+  const isDraw = useAppSelector((state) => state.isDraw);
+  const isGameEnded = useAppSelector((state) => state.isGameEnded);
+  const currentPlayer = useAppSelector((state) => state.currentPlayer);
 
   let information = '';
   if (isDraw) {

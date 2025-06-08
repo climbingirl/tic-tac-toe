@@ -1,6 +1,5 @@
 import { AppLayout } from './AppLayout.tsx';
 import { PLAYER } from './common/constants';
-import { store } from './redux/store';
 import {
   resetGame,
   setCurrentPlayer,
@@ -8,14 +7,14 @@ import {
   setIsDraw,
   setIsGameEnded,
 } from './redux/actions';
-import { useReduxSelector } from './redux/hooks';
 import { calcWinner, hasEmptySquare } from './common/utils';
+import { useAppDispatch, useAppSelector } from './redux/hooks.ts';
 
 export const App = () => {
-  const field = useReduxSelector((state) => state.field);
-  const isGameEnded = useReduxSelector((state) => state.isGameEnded);
-  const currentPlayer = useReduxSelector((state) => state.currentPlayer);
-  const dispatch = store.dispatch;
+  const field = useAppSelector((state) => state.field);
+  const isGameEnded = useAppSelector((state) => state.isGameEnded);
+  const currentPlayer = useAppSelector((state) => state.currentPlayer);
+  const dispatch = useAppDispatch();
 
   const handleGameReset = (): void => {
     dispatch(resetGame());

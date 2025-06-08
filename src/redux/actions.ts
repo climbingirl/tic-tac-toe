@@ -1,5 +1,4 @@
 import { Player } from '../common/constants';
-import { ActionType } from './types';
 
 export const SET_FIELD = 'SET_FIELD';
 export const SET_CURRENT_PLAYER = 'SET_CURRENT_PLAYER';
@@ -30,3 +29,10 @@ export const setIsDraw = (isDraw: boolean): ActionType => ({
 export const resetGame = (): ActionType => ({
   type: RESET_GAME,
 });
+
+export type ActionType =
+  | { type: typeof SET_FIELD; payload: Player[] }
+  | { type: typeof SET_CURRENT_PLAYER; payload: Player }
+  | { type: typeof SET_IS_GAME_ENDED; payload: boolean }
+  | { type: typeof SET_IS_DRAW; payload: boolean }
+  | { type: typeof RESET_GAME };

@@ -1,9 +1,8 @@
-import { createStore, Store } from 'redux';
+import { createStore } from 'redux';
 import { reducer } from './reducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { ActionType, GameState } from './types';
 
-export const store: Store<GameState, ActionType> = createStore(
-  reducer,
-  composeWithDevTools()
-);
+export const store = createStore(reducer, composeWithDevTools());
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
