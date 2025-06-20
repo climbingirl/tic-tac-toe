@@ -1,18 +1,31 @@
-import { InformationLayout } from './InformationLayout.tsx';
-import { useAppSelector } from '../../redux/hooks.ts';
+import { Component } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+import { RootState } from '../../redux/store';
+class InformationContainer extends Component<PropsFromRedux> {
+  render() {
+    const { isDraw, isGameEnded, currentPlayer } = this.props;
 
-export const Information = () => {
-  const isDraw = useAppSelector((state) => state.isDraw);
-  const isGameEnded = useAppSelector((state) => state.isGameEnded);
-  const currentPlayer = useAppSelector((state) => state.currentPlayer);
+    let information = '';
+    if (isDraw) {
+      information = 'Ничья';
+    } else if (!isDraw && isGameEnded) {
+      information = `Победа: ${currentPlayer}`;
+    } else if (!isDraw && !isGameEnded) {
+      information = `Ходит: ${currentPlayer}`;
+    }
 
-  let information = '';
-  if (isDraw) {
-    information = 'Ничья';
-  } else if (!isDraw && isGameEnded) {
-    information = `Победа: ${currentPlayer}`;
-  } else if (!isDraw && !isGameEnded) {
-    information = `Ходит: ${currentPlayer}`;
+    return <div className="text-2xl italic">{information}</div>;
   }
-  return <InformationLayout information={information} />;
-};
+}
+
+const mapState = (state: RootState) => ({
+  isDraw: state.isDraw,
+  isGameEnded: state.isGameEnded,
+  currentPlayer: state.currentPlayer,
+});
+
+const connector = connect(mapState);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export const Information = connector(InformationContainer);
